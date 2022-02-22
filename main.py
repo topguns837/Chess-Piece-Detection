@@ -25,7 +25,7 @@ CATEGORIES = [ "Black_Bishop" , "White_Bishop" , "Black_Knight" , "White_Knight"
               "Black_King" , "White_King"  , "Black_Queen" , "White_Queen" , "Black_Pawn" , "White_Pawn"]
   
 # define a video capture object
-vid = cv2.VideoCapture(1)
+vid = cv2.VideoCapture(0)
   
 while(True):
       
