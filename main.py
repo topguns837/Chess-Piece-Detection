@@ -25,7 +25,9 @@ CATEGORIES = [ "Black_Bishop" , "White_Bishop" , "Black_Knight" , "White_Knight"
               "Black_King" , "White_King"  , "Black_Queen" , "White_Queen" , "Black_Pawn" , "White_Pawn"]
   
 # define a video capture object
-vid = cv2.VideoCapture(0)
+vid = cv2.VideoCapture(1)
+
+CONFIDENCE = 0.90
   
 while(True):
       
@@ -44,10 +46,17 @@ while(True):
     X = tf.constant(img_array , dtype = tf.float64)
     y_prob = model.predict(X)
 
-    y = tf.argmax(y_prob , axis = 1)
-    y_class = CATEGORIES[int(y)]
+    y_confidence = tf.reduce_max(y_prob , axis = 1)
 
-    print(y_class)
+    if y_confidence >  CONFIDENCE :
+        y = tf.argmax(y_prob , axis = 1)
+        y_class = CATEGORIES[int(y)]
+
+        print("class : " , y_class)
+    
+    else:
+        print("Error")
+
 
       
     # the 'q' button is set as the
